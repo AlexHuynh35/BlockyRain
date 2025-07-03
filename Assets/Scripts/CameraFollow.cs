@@ -5,7 +5,7 @@ public class CameraFollow : MonoBehaviour
     public Transform target;
     public float smoothSpeed = 0.1f;
     public Vector3 offset;
-    public Vector2 minBounds;              // Bottom-left corner of map
+    public Vector2 minBounds;
     public Vector2 maxBounds;
 
     private Vector3 velocity = Vector3.zero;
