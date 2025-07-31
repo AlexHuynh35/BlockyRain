@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded = false;
 
     void Start() {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
