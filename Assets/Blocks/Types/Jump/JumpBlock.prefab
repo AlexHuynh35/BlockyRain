@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1950938360355168107, guid: 309c449482c1f4a91b65403f51cea988, type: 3}
+      propertyPath: m_Color.b
+      value: 0.12156863
+      objectReference: {fileID: 0}
+    - target: {fileID: 1950938360355168107, guid: 309c449482c1f4a91b65403f51cea988, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1950938360355168107, guid: 309c449482c1f4a91b65403f51cea988, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3596691999922441692, guid: 309c449482c1f4a91b65403f51cea988, type: 3}
       propertyPath: m_Name
       value: JumpBlock
