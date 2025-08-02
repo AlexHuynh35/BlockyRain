@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CloudManager : MonoBehaviour
 {
-    public BlockList blocks;
+    public List<GameObject> blocks;
     public int startX;
     public int endX;
     public float speed = 2f;
@@ -14,7 +14,7 @@ public class CloudManager : MonoBehaviour
     void Start()
     {
         currentBlock = 0;
-        numBlocks = blocks.blocks.Count;
+        numBlocks = blocks.Count;
         target = new Vector3(endX, transform.position.y, transform.position.z);
     }
 
@@ -40,7 +40,7 @@ public class CloudManager : MonoBehaviour
         if (currentBlock < numBlocks && Input.GetKeyDown(KeyCode.LeftShift))
         {
             Vector3 position = new Vector3(RoundNumToHalf(transform.position.x), RoundNumToHalf(transform.position.y), 0);
-            Instantiate(blocks.blocks[currentBlock], position, Quaternion.identity);
+            Instantiate(blocks[currentBlock], position, Quaternion.identity);
             currentBlock += 1;
         }
     }
