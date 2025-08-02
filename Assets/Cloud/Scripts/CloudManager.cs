@@ -24,11 +24,22 @@ public class CloudManager : MonoBehaviour
         MoveX();
     }
 
+    float RoundNumToHalf(float num)
+    {
+        float roundedNum = Mathf.Round(num);
+        if (Mathf.Approximately(num, roundedNum))
+        {
+            return roundedNum + 0.5f;
+        }
+        float distance = Mathf.Sign(num - roundedNum);
+        return roundedNum + distance * 0.5f;
+    }
+
     void SpawnBlock()
     {
         if (currentBlock < numBlocks && Input.GetKeyDown(KeyCode.LeftShift))
         {
-            Vector3 position = new Vector3(Mathf.Round(transform.position.x * 2f) / 2f, Mathf.Round(transform.position.y * 2f) / 2f, 0);
+            Vector3 position = new Vector3(RoundNumToHalf(transform.position.x), RoundNumToHalf(transform.position.y), 0);
             Instantiate(blocks.blocks[currentBlock], position, Quaternion.identity);
             currentBlock += 1;
         }
