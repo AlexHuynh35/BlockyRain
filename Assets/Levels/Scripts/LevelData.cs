@@ -6,6 +6,6 @@ public class LevelData : ScriptableObject
 {
     public GameObject map;
     public Vector3 playerStart;
-    public Vector3 playerEnd;
+    public Vector3 levelEnd;
     public List<CloudData> clouds;
 }
