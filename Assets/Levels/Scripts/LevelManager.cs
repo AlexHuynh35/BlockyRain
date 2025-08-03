@@ -1,18 +1,32 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class LevelManager : MonoBehaviour
 {
-    private int level = 1;
-    private List<LevelData> data;
+    public int currentLevel = 1;
+    public List<LevelData> levels;
+
     void Start()
     {
-        LoadLevel(data[level - 1]);
+        LoadAllLevelsIntoList();
     }
 
     void Update()
     {
 
+    }
+
+    void LoadAllLevelsIntoList()
+    {
+        Addressables.LoadAssetsAsync<LevelData>("leveldata", level =>
+        {
+            levels.Add(level);
+        }).Completed += op =>
+        {
+            LoadLevel(levels[currentLevel - 1]);
+        };
     }
 
     void LoadLevel(LevelData data)
@@ -36,7 +50,7 @@ public class LevelManager : MonoBehaviour
     {
         for (int i = 0; i < clouds.Count; i++)
         {
-            
+
         }
     }
 
@@ -47,6 +61,6 @@ public class LevelManager : MonoBehaviour
 
     void CheckPlayerWin()
     {
-        
+
     }
 }
