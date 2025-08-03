@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class CloudManager : MonoBehaviour
 {
-    public List<GameObject> blocks;
-    public int startX;
-    public int endX;
+    public float startX;
+    public float endX;
     public float speed = 2f;
+    public List<GameObject> blocks;
     private int currentBlock;
     private int numBlocks;
     private Vector3 target;

@@ -1,10 +1,17 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class LevelManager : MonoBehaviour
 {
+
+    public GameObject player;
+    public GameObject cloudPrefab;
+    public GameObject cloudContainer;
+    public Grid mapContainer;
+    public Camera cam;
+
     public int currentLevel = 1;
     public List<LevelData> levels;
 
@@ -26,6 +33,7 @@ public class LevelManager : MonoBehaviour
         }).Completed += op =>
         {
             LoadLevel(levels[currentLevel - 1]);
+            currentLevel++;
         };
     }
 
@@ -34,11 +42,12 @@ public class LevelManager : MonoBehaviour
         SetPlayerStart(data.playerStart);
         SetLevelEnd(data.levelEnd);
         SetClouds(data.clouds);
+        SetMap(data.map);
     }
 
     void SetPlayerStart(Vector3 position)
     {
-
+        player.transform.position = position;
     }
 
     void SetLevelEnd(Vector3 position)
@@ -48,10 +57,20 @@ public class LevelManager : MonoBehaviour
 
     void SetClouds(List<CloudData> clouds)
     {
-        for (int i = 0; i < clouds.Count; i++)
+        foreach (CloudData cloud in clouds)
         {
-
+            GameObject currentCloud = Instantiate(cloudPrefab, cloud.cloudLocation, Quaternion.identity, cloudContainer.transform);
+            CloudManager cm = currentCloud.GetComponent<CloudManager>();
+            cm.startX = cloud.startX;
+            cm.endX = cloud.endX;
+            cm.speed = cloud.speed;
+            cm.blocks = cloud.blocks;
         }
+    }
+
+    void SetMap(GameObject map)
+    {
+        Instantiate(map, Vector3.zero, Quaternion.identity, mapContainer.transform);
     }
 
     void CheckPlayerFail()
