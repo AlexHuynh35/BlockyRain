@@ -394,8 +394,8 @@ MonoBehaviour:
   target: {fileID: 116526999}
   smoothSpeed: 0.1
   offset: {x: 0, y: 0, z: -10}
-  minBounds: {x: -9, y: -5}
-  maxBounds: {x: 20, y: 10}
+  minBounds: {x: 0, y: 0, z: 0}
+  maxBounds: {x: 0, y: 0, z: 0}
 --- !u!1 &594284234
 GameObject:
   m_ObjectHideFlags: 0

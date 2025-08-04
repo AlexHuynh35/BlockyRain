@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Tilemaps;
 
 public class LevelManager : MonoBehaviour
 {
@@ -70,7 +71,40 @@ public class LevelManager : MonoBehaviour
 
     void SetMap(GameObject map)
     {
-        Instantiate(map, Vector3.zero, Quaternion.identity, mapContainer.transform);
+        Tilemap tilemap = Instantiate(map, Vector3.zero, Quaternion.identity, mapContainer.transform).GetComponent<Tilemap>();
+        SetCameraBounds(tilemap);
+    }
+
+    void SetCameraBounds(Tilemap tilemap)
+    {
+        BoundsInt bounds = GetUsedTileBounds(tilemap);
+        CameraManager cm = cam.GetComponent<CameraManager>();
+        cm.minBounds = tilemap.CellToWorld(bounds.min);
+        cm.maxBounds = tilemap.CellToWorld(bounds.max);
+    }
+
+    BoundsInt GetUsedTileBounds(Tilemap tilemap)
+    {
+        BoundsInt bounds = tilemap.cellBounds;
+        TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
+        int xMin = bounds.xMax;
+        int xMax = bounds.xMin;
+        int yMin = bounds.yMax;
+        int yMax = bounds.yMin;
+        for (int x = bounds.xMin; x < bounds.xMax; x++)
+        {
+            for (int y = bounds.yMin; y < bounds.yMax; y++)
+            {
+                if (tilemap.HasTile(new Vector3Int(x, y, 0)))
+                {
+                    if (x < xMin) xMin = x;
+                    if (x > xMax) xMax = x;
+                    if (y < yMin) yMin = y;
+                    if (y > yMax) yMax = y;
+                }
+            }
+        }
+        return new BoundsInt(xMin, yMin, 0, xMax - xMin + 1, yMax - yMin + 1, 1);
     }
 
     void CheckPlayerFail()

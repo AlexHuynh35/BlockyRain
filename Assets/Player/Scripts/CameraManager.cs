@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class CameraManager : MonoBehaviour
 {
     public Transform target;
     public float smoothSpeed = 0.1f;
     public Vector3 offset;
-    public Vector2 minBounds;
-    public Vector2 maxBounds;
+    public Vector3 minBounds;
+    public Vector3 maxBounds;
 
     private Vector3 velocity = Vector3.zero;
     private float camHalfHeight;
@@ -19,7 +19,8 @@ public class CameraFollow : MonoBehaviour
         camHalfWidth = cam.aspect * camHalfHeight;
     }
 
-    void LateUpdate() {
+    void LateUpdate()
+    {
         Vector3 targetPos = target.position + offset;
 
         float clampedX = Mathf.Clamp(targetPos.x, minBounds.x + camHalfWidth, maxBounds.x - camHalfWidth);

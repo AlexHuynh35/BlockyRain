@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D other) {
-        if (other.collider.CompareTag("Map")) {
+        if (other.collider.CompareTag("Map") || other.collider.CompareTag("Block")) {
             isGrounded = true;
         }
     }
