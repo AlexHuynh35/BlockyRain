@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level1Data
   m_EditorClassIdentifier: 
   playerStart: {x: -10.5, y: -5.5, z: 0}
-  levelEnd: {x: 0, y: 0, z: 0}
+  levelEnd: {x: 10.5, y: -2.1, z: 0}
   clouds:
   - {fileID: 11400000, guid: 5c4da73e09ee94f06a9e0e94ff34232e, type: 2}
   map: {fileID: 8725691492744633801, guid: eed12b14c725e4e918ce01835247a054, type: 3}

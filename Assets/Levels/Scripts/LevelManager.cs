@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
 {
 
     public GameObject player;
+    public GameObject door;
     public GameObject cloudPrefab;
     public GameObject cloudContainer;
     public Grid mapContainer;
@@ -53,7 +54,7 @@ public class LevelManager : MonoBehaviour
 
     void SetLevelEnd(Vector3 position)
     {
-
+        door.transform.position = position;
     }
 
     void SetClouds(List<CloudData> clouds)
