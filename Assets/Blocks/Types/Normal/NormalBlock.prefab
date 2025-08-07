@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 814695854648520200}
   - component: {fileID: 8915530965259836667}
   - component: {fileID: 5974466008568153865}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NormalBlock
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 7646457948095251457}
   - component: {fileID: 1026536744185579755}
   - component: {fileID: 8960423889571355043}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EffectTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3942836443264614387}
   - component: {fileID: 1950938360355168107}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

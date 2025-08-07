@@ -6,9 +6,13 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 5f;
     private Animator animator;
     private Rigidbody2D rb;
-    private bool isGrounded = false;
+    // private bool isGrounded = false;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundDistance = 0.1f;
+    [SerializeField] private LayerMask groundLayer;
 
-    void Start() {
+    void Start()
+    {
         animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -18,19 +22,26 @@ public class PlayerMovement : MonoBehaviour
         float move = Input.GetAxis("Horizontal");
         rb.linearVelocity = new Vector2(move * speed, rb.linearVelocity.y);
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            isGrounded = false;
+            // isGrounded = false;
         }
 
         animator.SetBool("isWalkingRight", move > 0);
         animator.SetBool("isWalkingLeft", move < 0);
     }
 
+    private bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, groundDistance, groundLayer);
+    }
+
+    /*
     void OnCollisionEnter2D(Collision2D other) {
         if (other.collider.CompareTag("Map") || other.collider.CompareTag("Block")) {
             isGrounded = true;
         }
     }
+    */
 }
