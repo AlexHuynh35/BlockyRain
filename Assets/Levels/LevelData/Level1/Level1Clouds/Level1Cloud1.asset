@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ed9ad9219574775a11d642f93cab99, type: 3}
   m_Name: Level1Cloud1
   m_EditorClassIdentifier: 
-  cameraLocation: {x: 0, y: 0, z: 0}
-  cloudLocation: {x: 0, y: 0, z: 0}
-  startX: 0
-  endX: 0
+  cloudLocation: {x: 6.5, y: 4.5, z: 0}
+  startX: 8.5
+  endX: 8.5
   speed: 0
   blocks:
   - {fileID: 3596691999922441692, guid: 309c449482c1f4a91b65403f51cea988, type: 3}
