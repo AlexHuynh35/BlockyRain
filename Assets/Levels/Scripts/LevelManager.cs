@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -34,6 +35,7 @@ public class LevelManager : MonoBehaviour
             levels.Add(level);
         }).Completed += op =>
         {
+            levels = levels.OrderBy(level => level.level).ToList();
             LoadLevel(levels[currentLevel]);
             currentLevel++;
         };

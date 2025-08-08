@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a670d262ed2c4f38b0a292f52f2021d, type: 3}
-  m_Name: Level1Data
+  m_Name: Level2Data
   m_EditorClassIdentifier: 
-  level: 1
+  level: 2
   playerStart: {x: -10.5, y: -5.5, z: 0}
-  levelEnd: {x: 10.5, y: -2.1, z: 0}
+  levelEnd: {x: 10.5, y: -5.1, z: 0}
   clouds:
-  - {fileID: 11400000, guid: 5c4da73e09ee94f06a9e0e94ff34232e, type: 2}
-  map: {fileID: 7003791130629867381, guid: 50c70338f65e84a6cae6a4221128209c, type: 3}
+  - {fileID: 11400000, guid: c045f00d97703462c9542b531330bd04, type: 2}
+  map: {fileID: 9171968908491026897, guid: 593764e54301947e4ad0bbd7688a7d63, type: 3}
