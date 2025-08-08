@@ -25,7 +25,8 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-
+        DebugNextLevel();
+        DebugPreviousLevel();
     }
 
     private void LoadAllLevelsIntoList()
@@ -128,6 +129,28 @@ public class LevelManager : MonoBehaviour
             ResetLevel();
             LoadLevel(levels[currentLevel]);
             currentLevel++;
+        }
+    }
+
+    private void DebugNextLevel()
+    {
+        if (currentLevel < levels.Count && Input.GetKeyDown(KeyCode.Return))
+        {
+            ResetLevel();
+            LoadLevel(levels[currentLevel]);
+            currentLevel++;
+            Debug.Log(currentLevel);
+        }
+    }
+
+    private void DebugPreviousLevel()
+    {
+        if (currentLevel > 1 && Input.GetKeyDown(KeyCode.Backspace))
+        {
+            ResetLevel();
+            currentLevel--;
+            LoadLevel(levels[currentLevel - 1]);
+            Debug.Log(currentLevel);
         }
     }
 
