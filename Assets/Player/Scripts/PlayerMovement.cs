@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 5f;
     private Animator animator;
     private Rigidbody2D rb;
-    // private bool isGrounded = false;
+    private LevelManager lm;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundDistance = 0.1f;
     [SerializeField] private LayerMask groundLayer;
@@ -15,9 +15,16 @@ public class PlayerMovement : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        lm = GetComponentInParent<LevelManager>();
     }
 
     void Update()
+    {
+        PlayerMove();
+        PlayerReset();
+    }
+
+    private void PlayerMove()
     {
         float move = Input.GetAxis("Horizontal");
         rb.linearVelocity = new Vector2(move * speed, rb.linearVelocity.y);
@@ -25,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            // isGrounded = false;
         }
 
         animator.SetBool("isWalkingRight", move > 0);
@@ -37,11 +43,16 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, groundDistance, groundLayer);
     }
 
-    /*
-    void OnCollisionEnter2D(Collision2D other) {
-        if (other.collider.CompareTag("Map") || other.collider.CompareTag("Block")) {
-            isGrounded = true;
+    private void PlayerReset()
+    {
+        if (Input.GetKeyDown("r") || PlayerOutOfBound())
+        {
+            lm.PlayerFail();
         }
     }
-    */
+
+    private bool PlayerOutOfBound()
+    {
+        return transform.position.y < -100;
+    }
 }

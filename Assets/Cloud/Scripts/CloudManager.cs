@@ -6,6 +6,7 @@ public class CloudManager : MonoBehaviour
     public float startX;
     public float endX;
     public float speed = 2f;
+    public GameObject blockContainer;
     public List<GameObject> blocks;
     private int currentBlock;
     private int numBlocks;
@@ -24,7 +25,7 @@ public class CloudManager : MonoBehaviour
         MoveX();
     }
 
-    float RoundNumToHalf(float num)
+    private float RoundNumToHalf(float num)
     {
         float roundedNum = Mathf.Round(num);
         if (Mathf.Approximately(num, roundedNum))
@@ -35,17 +36,17 @@ public class CloudManager : MonoBehaviour
         return roundedNum + distance * 0.5f;
     }
 
-    void SpawnBlock()
+    private void SpawnBlock()
     {
         if (currentBlock < numBlocks && Input.GetKeyDown(KeyCode.LeftShift))
         {
             Vector3 position = new Vector3(RoundNumToHalf(transform.position.x), RoundNumToHalf(transform.position.y), 0);
-            Instantiate(blocks[currentBlock], position, Quaternion.identity);
+            Instantiate(blocks[currentBlock], position, Quaternion.identity, blockContainer.transform);
             currentBlock += 1;
         }
     }
 
-    void MoveX()
+    private void MoveX()
     {
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 

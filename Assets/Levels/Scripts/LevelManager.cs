@@ -6,16 +6,16 @@ using UnityEngine.Tilemaps;
 
 public class LevelManager : MonoBehaviour
 {
-
     public GameObject player;
     public GameObject door;
     public GameObject cloudPrefab;
     public GameObject cloudContainer;
+    public GameObject blockContainer;
     public Grid mapContainer;
     public Camera cam;
-
-    public int currentLevel = 1;
     public List<LevelData> levels;
+
+    private int currentLevel = 0;
 
     void Start()
     {
@@ -27,19 +27,19 @@ public class LevelManager : MonoBehaviour
 
     }
 
-    void LoadAllLevelsIntoList()
+    private void LoadAllLevelsIntoList()
     {
         Addressables.LoadAssetsAsync<LevelData>("leveldata", level =>
         {
             levels.Add(level);
         }).Completed += op =>
         {
-            LoadLevel(levels[currentLevel - 1]);
+            LoadLevel(levels[currentLevel]);
             currentLevel++;
         };
     }
 
-    void LoadLevel(LevelData data)
+    private void LoadLevel(LevelData data)
     {
         SetPlayerStart(data.playerStart);
         SetLevelEnd(data.levelEnd);
@@ -47,17 +47,17 @@ public class LevelManager : MonoBehaviour
         SetMap(data.map);
     }
 
-    void SetPlayerStart(Vector3 position)
+    private void SetPlayerStart(Vector3 position)
     {
         player.transform.position = position;
     }
 
-    void SetLevelEnd(Vector3 position)
+    private void SetLevelEnd(Vector3 position)
     {
         door.transform.position = position;
     }
 
-    void SetClouds(List<CloudData> clouds)
+    private void SetClouds(List<CloudData> clouds)
     {
         foreach (CloudData cloud in clouds)
         {
@@ -66,17 +66,18 @@ public class LevelManager : MonoBehaviour
             cm.startX = cloud.startX;
             cm.endX = cloud.endX;
             cm.speed = cloud.speed;
+            cm.blockContainer = blockContainer;
             cm.blocks = cloud.blocks;
         }
     }
 
-    void SetMap(GameObject map)
+    private void SetMap(GameObject map)
     {
         Tilemap tilemap = Instantiate(map, Vector3.zero, Quaternion.identity, mapContainer.transform).GetComponent<Tilemap>();
         SetCameraBounds(tilemap);
     }
 
-    void SetCameraBounds(Tilemap tilemap)
+    private void SetCameraBounds(Tilemap tilemap)
     {
         BoundsInt bounds = GetUsedTileBounds(tilemap);
         CameraManager cm = cam.GetComponent<CameraManager>();
@@ -84,7 +85,7 @@ public class LevelManager : MonoBehaviour
         cm.maxBounds = tilemap.CellToWorld(bounds.max);
     }
 
-    BoundsInt GetUsedTileBounds(Tilemap tilemap)
+    private BoundsInt GetUsedTileBounds(Tilemap tilemap)
     {
         BoundsInt bounds = tilemap.cellBounds;
         TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
@@ -108,13 +109,38 @@ public class LevelManager : MonoBehaviour
         return new BoundsInt(xMin, yMin, 0, xMax - xMin + 1, yMax - yMin + 1, 1);
     }
 
-    void CheckPlayerFail()
+    public void PlayerFail()
     {
-
+        ResetLevel();
+        LoadLevel(levels[currentLevel - 1]);
     }
 
-    void CheckPlayerWin()
+    public void PlayerWin()
     {
+        if (currentLevel >= levels.Count)
+        {
+            Debug.Log("You Win!");
+        }
+        else
+        {
+            ResetLevel();
+            LoadLevel(levels[currentLevel]);
+            currentLevel++;
+        }
+    }
 
+    private void ResetLevel()
+    {
+        for (int i = cloudContainer.transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(cloudContainer.transform.GetChild(i).gameObject);
+        }
+
+        for (int i = blockContainer.transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(blockContainer.transform.GetChild(i).gameObject);
+        }
+
+        Destroy(mapContainer.transform.GetChild(0).gameObject);
     }
 }
