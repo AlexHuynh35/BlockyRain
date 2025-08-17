@@ -240,10 +240,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19211860959044520a0555bc74101120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 7
   groundSpeed: 5
-  airSpeed: 3
-  speed: 0
+  airSpeed: 2.8
+  groundAccel: 50
+  airAccel: 28
+  airControlTime: 0.2
+  jumpForce: 7
+  coyoteTime: 0.15
   groundCheck: {fileID: 206005845}
   groundDistance: 0.1
   groundLayer:
