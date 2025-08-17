@@ -4,6 +4,7 @@ using UnityEngine;
 public class JumpEffect : BlockEffect
 {
     public float jumpBoost;
+    
     public override void ApplyEffect(GameObject player)
     {
         PlayerMovement pm = player.GetComponent<PlayerMovement>();

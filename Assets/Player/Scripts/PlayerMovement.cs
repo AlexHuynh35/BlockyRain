@@ -2,20 +2,30 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float jumpForce = 5f;
+    /* --- Movement --- */
     public float groundSpeed = 5f;
     public float airSpeed = 3f;
-    public float airControlTime = 0.2f;
     public float groundAccel = 50f;
     public float airAccel = 20f;
-    public float speed;
-    private float timeSinceGrounded = 0f;
-    private Animator animator;
-    private Rigidbody2D rb;
-    private LevelManager lm;
+    [SerializeField] private float airControlTime = 0.2f;
+
+    /* --- Jump --- */
+    public float jumpForce = 5f;
+    [SerializeField] private float coyoteTime = 0.15f;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundDistance = 0.1f;
     [SerializeField] private LayerMask groundLayer;
+
+    /* --- On Start --- */
+    private Animator animator;
+    private Rigidbody2D rb;
+    private LevelManager lm;
+
+    /* --- State --- */
+    private bool isJumped = false;
+    private bool isGrounded = true;
+    private float timeSinceGrounded = 0f;
+    private float coyoteTimeCounter;
 
     void Start()
     {
@@ -33,23 +43,35 @@ public class PlayerMovement : MonoBehaviour
     private void PlayerMove()
     {
         float move = Input.GetAxisRaw("Horizontal");
-        bool isGrounded = IsGrounded();
 
-        CountTimeSinceGrounded(isGrounded);
+        IsGrounded();
+        CountTimeSinceGrounded();
+
         HandleMovement(move);
-
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        }
+        HandleJump();
 
         animator.SetBool("isWalkingRight", move > 0);
         animator.SetBool("isWalkingLeft", move < 0);
     }
 
-    private bool IsGrounded()
+    private void IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, groundDistance, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundDistance, groundLayer);
+    }
+
+    private void CountTimeSinceGrounded()
+    {
+        if (isGrounded)
+        {
+            isJumped = false;
+            timeSinceGrounded = 0f;
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            timeSinceGrounded += Time.deltaTime;
+            coyoteTimeCounter -= Time.deltaTime;
+        }
     }
 
     private void HandleMovement(float move)
@@ -65,15 +87,13 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = new Vector2(velX, rb.linearVelocity.y);
     }
 
-    private void CountTimeSinceGrounded(bool isGrounded)
+    private void HandleJump()
     {
-        if (isGrounded)
+        if (Input.GetButtonDown("Jump") && coyoteTimeCounter > 0f && !isJumped)
         {
-            timeSinceGrounded = 0f;
-        }
-        else
-        {
-            timeSinceGrounded += Time.deltaTime;
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            isJumped = true;
+            coyoteTimeCounter = 0f;
         }
     }
 
@@ -87,6 +107,6 @@ public class PlayerMovement : MonoBehaviour
 
     private bool PlayerOutOfBound()
     {
-        return transform.position.y < -100;
+        return transform.position.y < -25;
     }
 }
