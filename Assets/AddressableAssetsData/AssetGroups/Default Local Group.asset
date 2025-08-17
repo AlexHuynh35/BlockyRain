@@ -51,6 +51,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - leveldata
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ff876c6891a634a3cb825bfe8cd8d49c
+    m_Address: Assets/Levels/LevelData/Level7/Level7Data.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - leveldata
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 13dbd5a6f569f4a37941f6e661591c74, type: 2}
   m_SchemaSet:
