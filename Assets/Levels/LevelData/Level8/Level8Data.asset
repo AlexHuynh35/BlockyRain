@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a670d262ed2c4f38b0a292f52f2021d, type: 3}
+  m_Name: Level8Data
+  m_EditorClassIdentifier: 
+  level: 8
+  playerStart: {x: -10.5, y: -5.5, z: 0}
+  levelEnd: {x: 10.5, y: 0.9, z: 0}
+  clouds:
+  - {fileID: 11400000, guid: e1c166b06eeba4ae0bacda4bc1f65e96, type: 2}
+  - {fileID: 11400000, guid: 30d11489e8ac7419ca13cbb7280377fd, type: 2}
+  map: {fileID: 1084472029154395189, guid: 0ce597979c88641b5b3af8347a2db146, type: 3}

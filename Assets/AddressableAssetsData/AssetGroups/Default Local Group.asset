@@ -39,6 +39,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - leveldata
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a28cfc843348343fd80ae183f93edc49
+    m_Address: Assets/Levels/LevelData/Level8/Level8Data.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - leveldata
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: de5e0ae63e840457ea55d519f9045887
     m_Address: Assets/Levels/LevelData/Level2/Level2Data.asset
     m_ReadOnly: 0
