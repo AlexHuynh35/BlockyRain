@@ -45,10 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1015c1b23687c4acebacd987166837f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blocks: {fileID: 11400000, guid: 25585fc3678544c9c82a9205b910a1a9, type: 2}
+  active: 0
   startX: 0
-  endX: 4
-  speed: 2
+  endX: 0
+  speed: 0
+  blockContainer: {fileID: 0}
+  blocks: []
 --- !u!1 &8605101246592603887
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +128,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

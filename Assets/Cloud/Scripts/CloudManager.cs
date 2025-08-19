@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class CloudManager : MonoBehaviour
 {
+    public bool active = false;
     public float startX;
     public float endX;
-    public float speed = 2f;
+    public float speed;
     public GameObject blockContainer;
     public List<GameObject> blocks;
     private int currentBlock;
@@ -38,7 +39,7 @@ public class CloudManager : MonoBehaviour
 
     private void SpawnBlock()
     {
-        if (currentBlock < numBlocks && Input.GetKeyDown(KeyCode.LeftShift))
+        if (currentBlock < numBlocks && active && Input.GetKeyDown(KeyCode.LeftShift))
         {
             Vector3 position = new Vector3(RoundNumToHalf(transform.position.x), RoundNumToHalf(transform.position.y), 0);
             Instantiate(blocks[currentBlock], position, Quaternion.identity, blockContainer.transform);

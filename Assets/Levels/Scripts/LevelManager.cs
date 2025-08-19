@@ -62,15 +62,26 @@ public class LevelManager : MonoBehaviour
 
     private void SetClouds(List<CloudData> clouds)
     {
-        foreach (CloudData cloud in clouds)
+        CloudSwitcher cs = cloudContainer.GetComponent<CloudSwitcher>();
+        cs.ResetSwitcher();
+        cs.size = clouds.Count;
+        for (int i = 0; i < clouds.Count; i++)
         {
-            GameObject currentCloud = Instantiate(cloudPrefab, cloud.cloudLocation, Quaternion.identity, cloudContainer.transform);
+            GameObject currentCloud = Instantiate(cloudPrefab, clouds[i].cloudLocation, Quaternion.identity, cloudContainer.transform);
             CloudManager cm = currentCloud.GetComponent<CloudManager>();
-            cm.startX = cloud.startX;
-            cm.endX = cloud.endX;
-            cm.speed = cloud.speed;
+            SpriteRenderer sr = currentCloud.GetComponentInChildren<SpriteRenderer>();
+            if (i == 0)
+            {
+                cm.active = true;
+                sr.color = Color.white;
+            }
+            cm.startX = clouds[i].startX;
+            cm.endX = clouds[i].endX;
+            cm.speed = clouds[i].speed;
             cm.blockContainer = blockContainer;
-            cm.blocks = cloud.blocks;
+            cm.blocks = clouds[i].blocks;
+            cs.clouds.Add(cm);
+            cs.cloudSprites.Add(sr);
         }
     }
 
