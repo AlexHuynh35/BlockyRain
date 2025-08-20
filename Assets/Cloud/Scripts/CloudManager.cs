@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CloudManager : MonoBehaviour
@@ -9,14 +10,17 @@ public class CloudManager : MonoBehaviour
     public float speed;
     public GameObject blockContainer;
     public List<GameObject> blocks;
-    private int currentBlock;
+    [SerializeField] private TextMeshProUGUI indicatorText;
     private int numBlocks;
+    private int currentBlock;
+    private Color currentColor;
     private Vector3 target;
 
     void Start()
     {
-        currentBlock = 0;
         numBlocks = blocks.Count;
+        currentBlock = 0;
+        UpdateIndicator();
         target = new Vector3(endX, transform.position.y, transform.position.z);
     }
 
@@ -44,6 +48,7 @@ public class CloudManager : MonoBehaviour
             Vector3 position = new Vector3(RoundNumToHalf(transform.position.x), RoundNumToHalf(transform.position.y), 0);
             Instantiate(blocks[currentBlock], position, Quaternion.identity, blockContainer.transform);
             currentBlock += 1;
+            UpdateIndicator();
         }
     }
 
@@ -54,6 +59,22 @@ public class CloudManager : MonoBehaviour
         if (Vector3.Distance(transform.position, target) < 0.01f)
         {
             target = (target == new Vector3(endX, transform.position.y, transform.position.z)) ? new Vector3(startX, transform.position.y, transform.position.z) : new Vector3(endX, transform.position.y, transform.position.z);
+        }
+    }
+
+    public void UpdateIndicator()
+    {
+        if (currentBlock < numBlocks)
+        {
+            currentColor = blocks[currentBlock].GetComponentInChildren<SpriteRenderer>().color;
+            indicatorText.text = (numBlocks - currentBlock).ToString();
+            indicatorText.color = currentColor;
+        }
+        else
+        {
+            currentColor = Color.gray;
+            indicatorText.text = "0";
+            indicatorText.color = currentColor;
         }
     }
 }
