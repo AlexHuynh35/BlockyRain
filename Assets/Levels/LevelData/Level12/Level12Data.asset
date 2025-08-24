@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 12
   playerStart: {x: -10.5, y: -5.5, z: 0}
-  levelEnd: {x: -10.5, y: -1.1, z: 0}
+  levelEnd: {x: -10.5, y: 0.9, z: 0}
   clouds:
   - {fileID: 11400000, guid: bc3cfc31b64da4c49a929d2d406e3f20, type: 2}
   - {fileID: 11400000, guid: dd17a3dff819d4dab8a40ec907d887fa, type: 2}

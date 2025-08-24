@@ -4,13 +4,13 @@ public class PlayerMovement : MonoBehaviour
 {
     /* --- Movement --- */
     public float groundSpeed = 5f;
-    public float airSpeed = 2.8f;
+    public float airSpeed = 3.7f;
     public float groundAccel = 50f;
-    public float airAccel = 28f;
+    public float airAccel = 37f;
     [SerializeField] private float airControlTime = 0.2f;
 
     /* --- Jump --- */
-    public float jumpForce = 7f;
+    public float jumpForce = 50f;
     [SerializeField] private float coyoteTime = 0.15f;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundDistance = 0.1f;
@@ -91,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && coyoteTimeCounter > 0f && !isJumped)
         {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isJumped = true;
             coyoteTimeCounter = 0f;
