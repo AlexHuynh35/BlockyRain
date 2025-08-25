@@ -4,9 +4,9 @@ public class PlayerMovement : MonoBehaviour
 {
     /* --- Movement --- */
     public float groundSpeed = 5f;
-    public float airSpeed = 3.7f;
+    public float airSpeed = 3.75f;
     public float groundAccel = 50f;
-    public float airAccel = 37f;
+    public float airAccel = 37.5f;
     [SerializeField] private float airControlTime = 0.2f;
 
     /* --- Jump --- */
@@ -95,6 +95,14 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isJumped = true;
             coyoteTimeCounter = 0f;
+        }
+
+        if (Input.GetButtonUp("Jump") && !isGrounded)
+        {
+            if (rb.linearVelocity.y > 0)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
+            }
         }
     }
 
