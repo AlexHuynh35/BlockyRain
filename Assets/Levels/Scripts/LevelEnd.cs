@@ -3,6 +3,7 @@ using UnityEngine;
 public class LevelEnd : MonoBehaviour
 {
     private LevelManager lm;
+    private bool playerInGoal = false;
 
     void Start()
     {
@@ -11,14 +12,25 @@ public class LevelEnd : MonoBehaviour
 
     void Update()
     {
-
-    }
-    
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.tag == "Player" && Input.GetKeyDown("w"))
+        if (playerInGoal && Input.GetKeyDown(KeyCode.W))
         {
             lm.PlayerWin();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInGoal = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInGoal = false;
         }
     }
 }
