@@ -7,7 +7,7 @@ public class BlockEffectManager : MonoBehaviour
     
     void Start()
     {
-        block = GetComponent<BlockManager>();
+        block = GetComponentInParent<BlockManager>();
         effect.OnStart(block);
     }
 

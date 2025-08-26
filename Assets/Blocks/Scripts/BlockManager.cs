@@ -19,4 +19,9 @@ public class BlockManager : MonoBehaviour
             rb.MovePosition(rb.position + Vector2.down * fallSpeed * Time.fixedDeltaTime);
         }
     }
+
+    public void SetStatic(bool wantStatic)
+    {
+        rb.bodyType = wantStatic ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
+    }
 }

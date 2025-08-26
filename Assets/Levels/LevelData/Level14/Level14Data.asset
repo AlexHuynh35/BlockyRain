@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a670d262ed2c4f38b0a292f52f2021d, type: 3}
+  m_Name: Level14Data
+  m_EditorClassIdentifier: 
+  level: 14
+  playerStart: {x: -10.5, y: -5.5, z: 0}
+  levelEnd: {x: 10.5, y: -5.1, z: 0}
+  clouds:
+  - {fileID: 11400000, guid: 904331e02297c4e3f9b2d22d98d2d47e, type: 2}
+  - {fileID: 11400000, guid: 11507bbf70abd4387a958a5255c08a99, type: 2}
+  map: {fileID: 1402316109138127076, guid: 42bf298fa37f0453581c8b4c45668d46, type: 3}

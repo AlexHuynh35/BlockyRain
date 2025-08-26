@@ -18,6 +18,7 @@ public class WaitEffect : BlockEffect
         if (other.CompareTag("Player"))
         {
             block.falling = false;
+            block.SetStatic(true);
         }
     }
     
@@ -26,6 +27,7 @@ public class WaitEffect : BlockEffect
         if (other.CompareTag("Player"))
         {
             block.falling = true;
+            block.SetStatic(false);
         }
     }
 }

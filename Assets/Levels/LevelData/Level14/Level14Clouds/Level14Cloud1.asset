@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05ed9ad9219574775a11d642f93cab99, type: 3}
+  m_Name: Level14Cloud1
+  m_EditorClassIdentifier: 
+  cloudLocation: {x: 0.5, y: 4.5, z: 0}
+  startX: 0.5
+  endX: 0.5
+  speed: 0
+  blocks:
+  - {fileID: 2235760331162035906, guid: 2cfedcc14779c4783b7fd9a2350aacb5, type: 3}
+  - {fileID: 212531890529036243, guid: a0e4e975e9a2b4b208559f3731a8ae1b, type: 3}
+  - {fileID: 2751385532127266174, guid: 2c2dd862756774382abf89491c2994ba, type: 3}

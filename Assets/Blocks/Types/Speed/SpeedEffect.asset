@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef933b9fc761443738b088c2fccfdb5e, type: 3}
   m_Name: SpeedEffect
   m_EditorClassIdentifier: 
-  speed_boost: 1.5
+  speedBoost: 2
