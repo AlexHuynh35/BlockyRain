@@ -4,16 +4,32 @@ using UnityEngine;
 public class JumpEffect : BlockEffect
 {
     public float jumpBoost;
-    
-    public override void ApplyEffect(GameObject player)
+
+    public override void OnStart(BlockManager block)
     {
-        PlayerMovement pm = player.GetComponent<PlayerMovement>();
-        pm.jumpForce *= jumpBoost;
+
     }
 
-    public override void RemoveEffect(GameObject player)
+    public override void OnUpdate(BlockManager block)
     {
-        PlayerMovement pm = player.GetComponent<PlayerMovement>();
-        pm.jumpForce *= 1 / jumpBoost;
+
+    }
+
+    public override void HandleTriggerEnter(BlockManager block, GameObject other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            PlayerMovement pm = other.GetComponent<PlayerMovement>();
+            pm.jumpForce *= jumpBoost;
+        }
+    }
+
+    public override void HandleTriggerExit(BlockManager block, GameObject other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            PlayerMovement pm = other.GetComponent<PlayerMovement>();
+            pm.jumpForce *= 1 / jumpBoost;
+        }
     }
 }

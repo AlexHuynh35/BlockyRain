@@ -3,6 +3,7 @@ using UnityEngine;
 public class BlockManager : MonoBehaviour
 {
     public float fallSpeed = 2f;
+    public bool falling = true;
     private Rigidbody2D rb;
 
     void Start()
@@ -13,6 +14,9 @@ public class BlockManager : MonoBehaviour
 
     void Update()
     {
-        rb.MovePosition(rb.position + Vector2.down * fallSpeed * Time.fixedDeltaTime);
+        if (falling)
+        {
+            rb.MovePosition(rb.position + Vector2.down * fallSpeed * Time.fixedDeltaTime);
+        }
     }
 }

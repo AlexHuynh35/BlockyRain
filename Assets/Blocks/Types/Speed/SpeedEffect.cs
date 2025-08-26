@@ -3,23 +3,39 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "BlockEffects/SpeedEffect")]
 public class SpeedEffect : BlockEffect
 {
-    public float speed_boost;
+    public float speedBoost;
 
-    public override void ApplyEffect(GameObject player)
+    public override void OnStart(BlockManager block)
     {
-        PlayerMovement pm = player.GetComponent<PlayerMovement>();
-        pm.groundSpeed *= speed_boost;
-        pm.airSpeed *= speed_boost;
-        pm.groundAccel *= speed_boost;
-        pm.airAccel *= speed_boost;
+
     }
 
-    public override void RemoveEffect(GameObject player)
+    public override void OnUpdate(BlockManager block)
     {
-        PlayerMovement pm = player.GetComponent<PlayerMovement>();
-        pm.groundSpeed *= 1 / speed_boost;
-        pm.airSpeed *= 1 / speed_boost;
-        pm.groundAccel *= 1 / speed_boost;
-        pm.airAccel *= 1 / speed_boost;
+
+    }
+
+    public override void HandleTriggerEnter(BlockManager block, GameObject other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            PlayerMovement pm = other.GetComponent<PlayerMovement>();
+            pm.groundSpeed *= speedBoost;
+            pm.airSpeed *= speedBoost;
+            pm.groundAccel *= speedBoost;
+            pm.airAccel *= speedBoost;
+        }
+    }
+
+    public override void HandleTriggerExit(BlockManager block, GameObject other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            PlayerMovement pm = other.GetComponent<PlayerMovement>();
+            pm.groundSpeed *= 1 / speedBoost;
+            pm.airSpeed *= 1 / speedBoost;
+            pm.groundAccel *= 1 / speedBoost;
+            pm.airAccel *= 1 / speedBoost;
+        }
     }
 }

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public interface IBlockEffect
 {
-    public void ApplyEffect(GameObject player);
-    public void RemoveEffect(GameObject player);
+    public void OnStart(BlockManager block);
+    public void OnUpdate(BlockManager block);
+    public void HandleTriggerEnter(BlockManager block, GameObject other);
+    public void HandleTriggerExit(BlockManager block, GameObject other);
 }
