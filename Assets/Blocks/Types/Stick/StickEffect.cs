@@ -28,10 +28,25 @@ public class StickEffect : BlockEffect
                 block.transform.position = pos;
             }
         }
+
+        if (other.CompareTag("Block"))
+        {
+            BlockManager otherBlock = other.GetComponent<BlockManager>();
+            otherBlock.falling = false;
+            otherBlock.SetStatic(true);
+
+            Vector3 pos = otherBlock.transform.position;
+            bool nothingBelow = Physics2D.Raycast(new Vector2(pos.x, pos.y - 1f), Vector2.down, 0.3f, LayerMask.GetMask("Puzzle")).collider == null;
+            if (nothingBelow)
+            {
+                pos.y = Mathf.Floor(pos.y) - 0.5f;
+                otherBlock.transform.position = pos;
+            }
+        }
     }
-    
+
     public override void HandleTriggerExit(BlockManager block, GameObject other)
     {
-
+        
     }
 }

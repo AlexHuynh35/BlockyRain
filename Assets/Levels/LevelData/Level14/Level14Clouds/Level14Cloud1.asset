@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ed9ad9219574775a11d642f93cab99, type: 3}
   m_Name: Level14Cloud1
   m_EditorClassIdentifier: 
-  cloudLocation: {x: 0.5, y: 4.5, z: 0}
-  startX: 0.5
-  endX: 0.5
-  speed: 0
+  cloudLocation: {x: 0, y: 4.5, z: 0}
+  startX: -8.5
+  endX: 8.5
+  speed: 2
   blocks:
-  - {fileID: 2235760331162035906, guid: 2cfedcc14779c4783b7fd9a2350aacb5, type: 3}
   - {fileID: 212531890529036243, guid: a0e4e975e9a2b4b208559f3731a8ae1b, type: 3}
-  - {fileID: 2751385532127266174, guid: 2c2dd862756774382abf89491c2994ba, type: 3}
+  - {fileID: 212531890529036243, guid: a0e4e975e9a2b4b208559f3731a8ae1b, type: 3}
+  - {fileID: 212531890529036243, guid: a0e4e975e9a2b4b208559f3731a8ae1b, type: 3}
