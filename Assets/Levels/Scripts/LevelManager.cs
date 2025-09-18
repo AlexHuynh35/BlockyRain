@@ -3,6 +3,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public class LevelManager : MonoBehaviour
@@ -15,8 +16,7 @@ public class LevelManager : MonoBehaviour
     public Grid mapContainer;
     public Camera cam;
     public List<LevelData> levels;
-
-    private int currentLevel = 0;
+    private static int currentLevel = 0;
 
     void Start()
     {
@@ -27,6 +27,12 @@ public class LevelManager : MonoBehaviour
     {
         DebugNextLevel();
         DebugPreviousLevel();
+        ReturnToMenu();
+    }
+
+    public static void SetLevel(int levelIndex)
+    {
+        currentLevel = levelIndex;
     }
 
     private void LoadAllLevelsIntoList()
@@ -137,9 +143,19 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
+            UnlockNextLevel();
             ResetLevel();
             LoadLevel(levels[currentLevel]);
             currentLevel++;
+        }
+    }
+
+    private void UnlockNextLevel()
+    {
+        int unlocked = PlayerPrefs.GetInt("UnlockedLevels", 0);
+        if (currentLevel >= unlocked)
+        {
+            PlayerPrefs.SetInt("UnlockedLevels", currentLevel);
         }
     }
 
@@ -178,5 +194,13 @@ public class LevelManager : MonoBehaviour
         }
 
         Destroy(mapContainer.transform.GetChild(0).gameObject);
+    }
+
+    private void ReturnToMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("LevelSelector");
+        }
     }
 }
